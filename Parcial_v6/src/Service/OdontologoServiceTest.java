@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import dao.implementaciones.H2OdontologoIDao;
 import entity.Odontologo;

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 public class H2OdontologoIDao implements IDao<Odontologo> {
     private static final Logger LOGGER = Logger.getLogger(H2OdontologoIDao.class);
 
