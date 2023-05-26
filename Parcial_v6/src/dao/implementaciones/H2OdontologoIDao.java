@@ -14,7 +14,7 @@ import java.util.List;
 
 
 public class H2OdontologoIDao implements IDao<Odontologo> {
-    private static final Logger LOGGER = Logger.getLogger(String.valueOf(H2OdontologoIDao.class));
+    private static final Logger LOGGER = Logger.getLogger(H2OdontologoIDao.class);
 
     @Override
     public Odontologo guardar(Odontologo odontologo) {
@@ -28,32 +28,36 @@ public class H2OdontologoIDao implements IDao<Odontologo> {
             ps.setString(2, odontologo.getNombre());
             ps.setString(3, odontologo.getApellido());
             ps.execute();
-            ResultSet rs = ps.getGeneratedKeys();
-            while(rs.next()){
-                odontologo.setId(rs.getInt(1));
+
+            ResultSet key= ps.getGeneratedKeys();
+
+            while(key.next()){
+                int id = key.getInt(1);
+               odontologo.setId(id);
             }
-            connection.commit();
+
             LOGGER.info("Se registro un nuevo odontologo " + odontologo);
+            connection.commit();
+
         }
         catch(Exception e){
-            LOGGER.info(e.getMessage());
+            LOGGER.error(e.getMessage());
             e.printStackTrace();
             if(connection!=null){
                 try{
                     connection.rollback();
-                    LOGGER.info("Hay un problema!");
+                    LOGGER.error("Hay un problema!");
                     e.printStackTrace();
                 }catch(Exception ex){
-                    LOGGER.info(ex.getMessage());
+                    LOGGER.error(ex.getMessage());
                     ex.printStackTrace();
-
                 }
             }
         }finally {
             try{
                 connection.close();
             }catch(Exception exception){
-                LOGGER.info("Ocurrio un error al cerrar la conexion" +  exception.getMessage());
+                LOGGER.error("Ocurrio un error al cerrar la conexion" +  exception.getMessage());
                 exception.printStackTrace();
 
             }
@@ -64,25 +68,30 @@ public class H2OdontologoIDao implements IDao<Odontologo> {
     @Override
     public List<Odontologo> listarTodos(){
         Connection connection = null;
-        List<Odontologo> listaOdontologo = new ArrayList<Odontologo>();
-        Odontologo odontologo = null;
+        List<Odontologo> listaOdontologo = new ArrayList<>();
+
         try{
             connection = H2Connection.getConnection();
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM ODONTOLOGOS;");
             ResultSet rs = ps.executeQuery();
+
             while(rs.next()){
-                odontologo = new Odontologo(rs.getInt(1), rs.getInt(2),rs.getString(3), rs.getString(4));
-                LOGGER.info("Odontologo n°" + odontologo.getId());
+                Odontologo odontologo = new Odontologo();
+                odontologo.setNumeroMatricula(rs.getInt(2));
+                odontologo.setNombre(rs.getString(3));
+                odontologo.setApellido(rs.getString(4));
+
+                listaOdontologo.add(odontologo);
             }
 
         }catch(Exception e){
-            LOGGER.info("Ocurrio un problema" + e.getMessage());
+            LOGGER.error("Ocurrio un problema" + e.getMessage());
             e.printStackTrace();
         }finally{
             try{
                 connection.close();
             }catch(Exception e){
-                LOGGER.info("Ocurrio un problema al cerrar la conexion" + e.getMessage());
+                LOGGER.error("Ocurrio un problema al cerrar la conexion" + e.getMessage());
                 e.printStackTrace();
             }
         }

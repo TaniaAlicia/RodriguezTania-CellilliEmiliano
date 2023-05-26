@@ -1,5 +1,7 @@
 package entity;
 
+import java.sql.RowId;
+
 public class Odontologo {
     private int id;
     private int numeroMatricula;
@@ -17,6 +19,9 @@ public class Odontologo {
         this.numeroMatricula = numeroMatricula;
         this.nombre = nombre;
         this.apellido = apellido;
+    }
+
+    public Odontologo() {
     }
 
     public int getId() {
