@@ -3,6 +3,7 @@ package dao.implementaciones;
 import dao.H2Connection;
 import dao.IDao;
 import entity.Odontologo;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 public class H2OdontologoIDao implements IDao<Odontologo> {
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(H2OdontologoIDao.class));
