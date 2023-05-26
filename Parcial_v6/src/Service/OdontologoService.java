@@ -22,4 +22,6 @@ public class OdontologoService {
         return odontologoIDao.listarTodos();
     };
 
+
+
 }

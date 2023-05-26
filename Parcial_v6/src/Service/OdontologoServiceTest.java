@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class OdontologoServiceTest {
 
     private static Connection connection = null;
-    private final OdontologoService odontologoService = new OdontologoService(new H2OdontologoIDao());
+    private service.OdontologoService odontologoService = new service.OdontologoService(new H2OdontologoIDao());
 
 
     @BeforeAll
