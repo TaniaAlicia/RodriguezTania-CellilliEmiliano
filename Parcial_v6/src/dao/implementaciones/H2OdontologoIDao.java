@@ -10,7 +10,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+// Por alguna razon, no me deja importar la libreria de apache
+
 import java.util.logging.Logger;
+
 
 public class H2OdontologoIDao implements IDao<Odontologo> {
     private static final Logger LOGGER = Logger.getLogger(String.valueOf(H2OdontologoIDao.class));
