@@ -1,0 +1,5 @@
+[2023-05-26 00:01:12] [ INFO ] [H2OdontologoIDao:79] Ocurrio un problemaTable "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS; [42104-214]
+[2023-05-26 00:10:45] [ INFO ] [H2OdontologoIDao:79] Ocurrio un problemaLa base de datos puede que ya esté siendo utilizada: "C:/Users/Tania/Parcial.mv.db". Soluciones Posibles: cierre todas las otras conexiones; use el modo server
+Database may be already in use: "C:/Users/Tania/Parcial.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-214]
+[2023-05-26 00:10:45] [ INFO ] [H2OdontologoIDao:85] Ocurrio un problema al cerrar la conexionCannot invoke "java.sql.Connection.close()" because "connection" is null
